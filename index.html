@@ -58,7 +58,6 @@
       transition: transform 0.3s ease;
     }
 
-    /* 放大圖區塊 */
     .overlay {
       display: none;
       position: fixed;
@@ -111,6 +110,7 @@
     <a href="#about">会社情報</a>
     <a href="#recruit">採用情報</a>
     <a href="#">プレスルーム</a>
+    <a href="IG.html">Instagram</a>
   </nav>
 
   <main id="portfolio" class="gallery">
@@ -152,11 +152,9 @@
       img.src = src;
       overlay.style.display = 'flex';
     }
-
     function hideImage() {
       document.getElementById('overlay').style.display = 'none';
     }
-
     document.querySelector('.close').addEventListener('click', hideImage);
   </script>
 </body>
