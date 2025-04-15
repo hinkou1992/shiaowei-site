@@ -1,86 +1,133 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { useState } from "react"
 
-export default function ShiaoWeiPage() {
-  const [selected, setSelected] = useState(null)
 
-  const images = [
-    { src: "/images/photo1.jpg", alt: "自拍肌肉裙子照" },
-    { src: "/images/photo2.jpg", alt: "坐捷運美女照" },
-    { src: "/images/photo3.jpg", alt: "自拍貓鬚特效照" },
-    { src: "/images/photo4.jpg", alt: "街舞裝扮照" },
-    { src: "/images/photo5.jpg", alt: "廣告牆合成照" },
-  ]
-
-  return (
-    <div className="min-h-screen bg-white text-neutral-800">
-      {/* Hero Section with Background */}
-      <div className="relative h-[480px] w-full">
-        <Image
-          src="/images/persol_bg.png"
-          alt="Hero Background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-white/60 flex flex-col justify-center items-center text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-light leading-snug mb-4">
-            はたらいて、<br />笑おう。
-          </h1>
-          <p className="text-neutral-600 text-sm">ShiaoWei Inc. | 重新定義月工門</p>
-        </div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="max-w-6xl mx-auto flex justify-end items-center gap-6 py-4 px-6 text-sm text-neutral-600 border-b">
-        <a href="#portfolio" className="hover:text-black transition">サービス紹介</a>
-        <a href="#about" className="hover:text-black transition">会社情報</a>
-        <a href="#recruit" className="hover:text-black transition">採用情報</a>
-        <a href="#" className="hover:text-black transition">プレスルーム</a>
-      </nav>
-
-      <main id="portfolio" className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
-        {images.map((img, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 }}
-          >
-            <Card className="overflow-hidden rounded-xl shadow cursor-pointer" onClick={() => setSelected(img)}>
-              <CardContent className="p-0">
-                <Image src={img.src} alt={img.alt} width={600} height={800} className="w-full h-auto object-cover" />
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </main>
-
-      <section id="about" className="max-w-3xl mx-auto mt-24 text-center text-neutral-600 text-lg leading-relaxed px-4">
-        <p>
-          私たちは、月工門とは単なる構造ではなく、未来への入り口だと信じています。
-          ShiaoWei は、その扉を通じて、創造・視覚・自己表現の新しい地平を切り拓きます。
-        </p>
-      </section>
-
-      <section id="recruit" className="mt-24 text-center px-4">
-        <h3 className="text-xl font-semibold mb-4">ShiaoWeiと一緒に働きませんか？</h3>
-        <p className="text-neutral-500 mb-6">現在募集はありませんが、あらゆる形式の門の応募を歓迎します。</p>
-        <Button>お問い合わせ</Button>
-      </section>
-
-      <footer className="mt-20 text-center text-sm text-neutral-400 px-4 pb-12">
-        <p>ⓒ 2025 ShiaoWei. All Rights Reserved. | 月工門計画株式会社</p>
-      </footer>
-
-      {selected && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" onClick={() => setSelected(null)}>
-          <Image src={selected.src} alt={selected.alt} width={1000} height={1000} className="max-h-[90vh] w-auto rounded-xl shadow-xl" />
-        </div>
-      )}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShiaoWei Inc.</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+      color: #333;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: url('images/persol_bg.png') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255,255,255,0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-overlay h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .hero-overlay p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #000;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    section {
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      color: #aaa;
+      padding-bottom: 2rem;
+    }
+    button {
+      background: #333;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-overlay">
+      <h1>はたらいて、<br/>笑おう。</h1>
+      <p>ShiaoWei Inc. | 重新定義月工門</p>
     </div>
-  )
-}
+  </div>
+
+  <nav>
+    <a href="#portfolio">サービス紹介</a>
+    <a href="#about">会社情報</a>
+    <a href="#recruit">採用情報</a>
+    <a href="#">プレスルーム</a>
+  </nav>
+
+  <main id="portfolio" class="gallery">
+    <img src="images/photo1.jpg" alt="自拍肌肉裙子照"/>
+    <img src="images/photo2.jpg" alt="坐捷運美女照"/>
+    <img src="images/photo3.jpg" alt="自拍貓鬚特效照"/>
+    <img src="images/photo4.jpg" alt="街舞裝扮照"/>
+    <img src="images/photo5.jpg" alt="廣告牆合成照"/>
+  </main>
+
+  <section id="about">
+    <p>
+      私たちは、月工門とは単なる構造ではなく、未来への入り口だと信じています。
+      ShiaoWei は、その扉を通じて、創造・視覚・自己表現の新しい地平を切り拓きます。
+    </p>
+  </section>
+
+  <section id="recruit">
+    <h3>ShiaoWeiと一緒に働きませんか？</h3>
+    <p>現在募集はありませんが、あらゆる形式の門の応募を歓迎します。</p>
+    <button>お問い合わせ</button>
+  </section>
+
+  <footer>
+    ⓒ 2025 ShiaoWei. All Rights Reserved. | 月工門計画株式会社
+  </footer>
+</body>
+</html>
