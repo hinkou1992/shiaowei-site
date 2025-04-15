@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShiaoWei - 重新定義月工門</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: #333;
+    }
+    header, footer {
+      text-align: center;
+      padding: 2rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: #f5f5f5;
+      padding: 1rem;
+    }
+    nav a {
+      color: #666;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #000;
+    }
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    .subtitle {
+      font-size: 1.25rem;
+      color: #666;
+    }
+    .quote {
+      font-style: italic;
+      color: #aaa;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    section {
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    button {
+      background: #333;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#portfolio">作品</a>
+    <a href="#about">關於我們</a>
+    <a href="#recruit">人才招募</a>
+  </nav>
+
+  <header>
+    <div class="title">重新定義月工門</div>
+    <div class="subtitle">ShiaoWei / 構築家</div>
+    <div class="quote">「門打不開……」</div>
+  </header>
+
+  <main id="portfolio" class="gallery">
+    <img src="images/photo1.jpg" alt="自拍肌肉裙子照">
+    <img src="images/photo2.jpg" alt="坐捷運美女照">
+    <img src="images/photo3.jpg" alt="自拍貓鬚特效照">
+    <img src="images/photo4.jpg" alt="街舞裝扮照">
+    <img src="images/photo5.jpg" alt="廣告牆合成照">
+  </main>
+
+  <section id="about">
+    <p>
+      我們相信，月工門不僅是一種精神象徵，更是一種通往未來的態度。
+      ShiaoWei 致力於透過創意、視覺與自我認同的突破，為世人開啟嶄新的視野。
+    </p>
+  </section>
+
+  <section id="recruit">
+    <h3>加入我們</h3>
+    <p>目前尚無職缺，但我們歡迎各種形式的門。</p>
+    <button>聯絡我們</button>
+  </section>
+
+  <footer>
+    ⓒ 2025 ShiaoWei. All Rights Reserved. | 重新定義月工門計畫
+  </footer>
+</body>
+</html>
