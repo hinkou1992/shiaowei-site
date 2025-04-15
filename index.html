@@ -1,113 +1,86 @@
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import { motion } from "framer-motion"
+import { useState } from "react"
 
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShiaoWei - 重新定義月工門</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: white;
-      color: #333;
-    }
-    header, footer {
-      text-align: center;
-      padding: 2rem;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      background: #f5f5f5;
-      padding: 1rem;
-    }
-    nav a {
-      color: #666;
-      text-decoration: none;
-    }
-    nav a:hover {
-      color: #000;
-    }
-    .title {
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-    .subtitle {
-      font-size: 1.25rem;
-      color: #666;
-    }
-    .quote {
-      font-style: italic;
-      color: #aaa;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    section {
-      max-width: 700px;
-      margin: 4rem auto;
-      padding: 0 1rem;
-      text-align: center;
-    }
-    button {
-      background: #333;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <a href="#portfolio">作品</a>
-    <a href="#about">關於我們</a>
-    <a href="#recruit">人才招募</a>
-  </nav>
+export default function ShiaoWeiPage() {
+  const [selected, setSelected] = useState(null)
 
-  <header>
-    <div class="title">重新定義月工門</div>
-    <div class="subtitle">ShiaoWei / 構築家</div>
-    <div class="quote">「門打不開……」</div>
-  </header>
+  const images = [
+    { src: "/images/photo1.jpg", alt: "自拍肌肉裙子照" },
+    { src: "/images/photo2.jpg", alt: "坐捷運美女照" },
+    { src: "/images/photo3.jpg", alt: "自拍貓鬚特效照" },
+    { src: "/images/photo4.jpg", alt: "街舞裝扮照" },
+    { src: "/images/photo5.jpg", alt: "廣告牆合成照" },
+  ]
 
-  <main id="portfolio" class="gallery">
-    <img src="images/photo1.jpg" alt="自拍肌肉裙子照">
-    <img src="images/photo2.jpg" alt="坐捷運美女照">
-    <img src="images/photo3.jpg" alt="自拍貓鬚特效照">
-    <img src="images/photo4.jpg" alt="街舞裝扮照">
-    <img src="images/photo5.jpg" alt="廣告牆合成照">
-  </main>
+  return (
+    <div className="min-h-screen bg-white text-neutral-800">
+      {/* Hero Section with Background */}
+      <div className="relative h-[480px] w-full">
+        <Image
+          src="/images/persol_bg.png"
+          alt="Hero Background"
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-white/60 flex flex-col justify-center items-center text-center px-4">
+          <h1 className="text-4xl md:text-5xl font-light leading-snug mb-4">
+            はたらいて、<br />笑おう。
+          </h1>
+          <p className="text-neutral-600 text-sm">ShiaoWei Inc. | 重新定義月工門</p>
+        </div>
+      </div>
 
-  <section id="about">
-    <p>
-      我們相信，月工門不僅是一種精神象徵，更是一種通往未來的態度。
-      ShiaoWei 致力於透過創意、視覺與自我認同的突破，為世人開啟嶄新的視野。
-    </p>
-  </section>
+      {/* Navigation */}
+      <nav className="max-w-6xl mx-auto flex justify-end items-center gap-6 py-4 px-6 text-sm text-neutral-600 border-b">
+        <a href="#portfolio" className="hover:text-black transition">サービス紹介</a>
+        <a href="#about" className="hover:text-black transition">会社情報</a>
+        <a href="#recruit" className="hover:text-black transition">採用情報</a>
+        <a href="#" className="hover:text-black transition">プレスルーム</a>
+      </nav>
 
-  <section id="recruit">
-    <h3>加入我們</h3>
-    <p>目前尚無職缺，但我們歡迎各種形式的門。</p>
-    <button>聯絡我們</button>
-  </section>
+      <main id="portfolio" className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+        {images.map((img, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.1 }}
+          >
+            <Card className="overflow-hidden rounded-xl shadow cursor-pointer" onClick={() => setSelected(img)}>
+              <CardContent className="p-0">
+                <Image src={img.src} alt={img.alt} width={600} height={800} className="w-full h-auto object-cover" />
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </main>
 
-  <footer>
-    ⓒ 2025 ShiaoWei. All Rights Reserved. | 重新定義月工門計畫
-  </footer>
-</body>
-</html>
+      <section id="about" className="max-w-3xl mx-auto mt-24 text-center text-neutral-600 text-lg leading-relaxed px-4">
+        <p>
+          私たちは、月工門とは単なる構造ではなく、未来への入り口だと信じています。
+          ShiaoWei は、その扉を通じて、創造・視覚・自己表現の新しい地平を切り拓きます。
+        </p>
+      </section>
+
+      <section id="recruit" className="mt-24 text-center px-4">
+        <h3 className="text-xl font-semibold mb-4">ShiaoWeiと一緒に働きませんか？</h3>
+        <p className="text-neutral-500 mb-6">現在募集はありませんが、あらゆる形式の門の応募を歓迎します。</p>
+        <Button>お問い合わせ</Button>
+      </section>
+
+      <footer className="mt-20 text-center text-sm text-neutral-400 px-4 pb-12">
+        <p>ⓒ 2025 ShiaoWei. All Rights Reserved. | 月工門計画株式会社</p>
+      </footer>
+
+      {selected && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" onClick={() => setSelected(null)}>
+          <Image src={selected.src} alt={selected.alt} width={1000} height={1000} className="max-h-[90vh] w-auto rounded-xl shadow-xl" />
+        </div>
+      )}
+    </div>
+  )
+}
